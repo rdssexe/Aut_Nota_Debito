@@ -1,0 +1,12 @@
+[theme]
+# Cor de fundo principal do sistema (Escuro)
+backgroundColor = "#000000"
+
+# Cor de fundo das caixas de texto, uploads e selectboxes
+secondaryBackgroundColor = "#161B22"
+
+# Cor principal dos textos e ícones (Branco Puro para contraste)
+textColor = "#FFFFFF"
+
+# Cor de destaque para links, bordas ativas e botões
+primaryColor = "#0084FF"
