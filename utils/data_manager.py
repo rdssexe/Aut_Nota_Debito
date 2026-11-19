@@ -56,6 +56,8 @@ def obter_saudacao() -> str:
 def identificar_periodo_tabela(data_nota_formatada: str) -> tuple[str, str]:
     mes_identificado = DICIONARIO_MESES[datetime.now().strftime("%m")]
     ano_identificado = str(datetime.now().year)
+    
+    # Fixado permanentemente como 1ª QUINZENA
     quinzena_texto = "1ª QUINZENA"
  
     if data_nota_formatada:
@@ -65,20 +67,15 @@ def identificar_periodo_tabela(data_nota_formatada: str) -> tuple[str, str]:
                 partes = data_limpa.split("-")
                 ano_identificado = partes[0]
                 mes_numero = partes[1]
-                dia_da_nota = int(partes[2])
             elif "/" in data_limpa and len(data_limpa.split("/")) == 3:
                 partes = data_limpa.split("/")
-                dia_da_nota = int(partes[0])
                 mes_numero = partes[1]
                 ano_identificado = partes[2]
             else:
-                dia_da_nota = datetime.now().day
                 mes_numero = datetime.now().strftime("%m")
  
             if mes_numero in DICIONARIO_MESES:
                 mes_identificado = DICIONARIO_MESES[mes_numero]
- 
-            quinzena_texto = "1ª QUINZENA" if dia_da_nota <= 15 else "2ª QUINZENA"
         except:
             pass
  
@@ -90,9 +87,8 @@ def processar_regras_assunto(parceiro_selecionado: str, numero_nd: str, mes_sele
         nd_print = numero_nd if numero_nd else "[NÚMERO DA ND]"
         return f"{mes_selecionado.upper()} | Notas de débito {nd_print}"
  
+    # Fixado permanentemente como Primeira Quinzena
     texto_quinzena = "Primeira Quinzena"
-    if "2ª QUINZENA" in st.session_state.get("titulo_periodo_tabela_memoria", ""):
-        texto_quinzena = "Segunda Quinzena"
  
     mes_final = str(mes_selecionado).strip().title()
     return f"Nota de débito - {texto_quinzena} de {mes_final} - {str(parceiro_selecionado).upper()}"
@@ -122,7 +118,6 @@ def salvar_ou_atualizar_parceiro(nome_parceiro: str, novo_email: str, novo_nome:
         col_parceiro_idx = 1
         col_email_idx = 2
  
-    # Cria a coluna "Nome no Email" no final se não existir
     if not col_nome_email_idx:
         col_nome_email_idx = ws.max_column + 1
         ws.cell(row=1, column=col_nome_email_idx).value = COLUNA_NOME_EMAIL

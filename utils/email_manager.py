@@ -2,7 +2,7 @@ import base64
 import requests
 
 WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxwXnxwgO1Qbjkj2FIxlZKsrQVIyiMJWa_2XUJeZI_XfA4pnV0lAiq7JAy6nCmgwpKlTA/exec"
-EMAILS_COPIA = "rafaelasouza@magazineluiza.com.br, kemilly.silva@magazineluiza.com.br"
+EMAILS_COPIA = "fsilva.luis@magazineluiza.com.br, kemilly.silva@magazineluiza.com.br"
 
 def gerar_linhas_html_tabela(lista_nd: list, lista_data: list, lista_campanha: list, parceiro: str) -> str:
     # Gera as linhas <tr> em HTML contendo os dados empilhados de todas as campanhas incluídas.
